@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     # External Packages
     # Internal Packages
     'home',
-    'chat',
 ]
 
 MIDDLEWARE = [
