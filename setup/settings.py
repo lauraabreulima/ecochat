@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # External Packages
+    'channels',
     # Internal Packages
     'home',
 ]
@@ -71,8 +72,8 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'setup.wsgi.application'
-
+#WSGI_APPLICATION = 'setup.wsgi.application'
+ASGI_APPLICATION = 'setup.asgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
