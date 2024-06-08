@@ -5,6 +5,11 @@ class ChatConsumer(WebsocketConsumer):
     def connect(self):
         self.accept()
 
+        self.send(text_data=json.dumps({
+            'type': 'connection_established',
+            'message': 'Você se conectou!'
+        }))
+
     def disconnect(self, close_code):
         pass
 
