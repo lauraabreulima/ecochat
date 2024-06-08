@@ -5,9 +5,15 @@
     <title>Lobby</title>
 </head>
 <body>
-    <textarea id="chat-log" cols="50" rows="20"></textarea><br>
-    <input id="chat-message-input" type="text" size="100">
-    <button id="chat-message-submit">Enviar</button>
+    <h1>Ecochat</h1>
+
+    <form id="form">
+        <input type="text", name="message"/>
+    </form>
+
+    <div id="messages">
+
+    </div>
     
     <script type="text/javascript">
         let url = `ws://${window.location.host}/ws/socket-server/`
@@ -17,7 +23,25 @@
         chatSocket.onmessage = function(e){
             let data = JSON.parse(e.data)
             console.log('Data:', data)
+
+            if(data.type === 'chat'){
+                let messages = document.getElementById('messages')
+
+                messages.insertAdjacentHTML('beforeend', `<div>
+                                            <p>${data.message}</p>
+                                        </div>`)
+            }
         }
+
+        let form = document.getElementById('form')
+        form.addEventListener('submit', (e)=> {
+            e.preventDefault()
+            let message = e.target.message.value
+            chatSocket.send(JSON.stringify({
+                'message': message
+            }))
+            form.reset()
+        })
 
     </script>
 </body>
